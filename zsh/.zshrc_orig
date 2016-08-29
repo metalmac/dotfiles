@@ -1,0 +1,168 @@
+#!/bin/zsh
+# Path to your oh-my-zsh installation.
+  export ZSH=/root/.oh-my-zsh
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="ys"
+#ZSH_THEME="norm"
+#ZSH_THEME="robbyrussell"
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+#plugins=(git)
+plugins=(git git-extras history cp fasd tmux autojump colored-man-pages ubuntu z dirhistory)
+#plugins=(git git-extras history fasd tmux autojump colored-man-pages ubuntu z dirhistory)
+. ~/.oh-my-zsh/plugins/z/z.sh
+
+# User configuration
+
+# export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+# export MANPATH="/usr/local/man:$MANPATH"
+#autoload -U compinit && compinit
+
+source $ZSH/oh-my-zsh.sh
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+
+# some more ls aliases
+alias ll='ls -alF --time-style=full-iso'
+alias la='ls -A'
+alias l='ls -CF'
+alias ls='ls -lxF --time-style=long-iso --color=always'
+
+#rm aliases 
+alias rmv='rm -rvf'
+
+#rm aliases 
+alias mdv='mkdir -v'
+
+#cp aliases 
+alias cpv='cp -rvf'
+#alias cpf='rsync -avzpogh -e /dev/null --progress'
+
+#mv aliases 
+alias mvv='mv -vf'
+
+#clear aliases  
+alias cls='clear'
+
+#vim aliases
+alias vi="vim"
+
+#cd aliases 
+alias c..="cd .."
+alias v='f -e vim' # quick opening files with vim
+
+#grep aliases 
+alias grep="grep --color=auto"
+
+#file default open-way aliases 
+alias -s c=vi
+alias -s cpp=vi
+alias -s h=vi
+alias -s js=vi
+alias -s java=vi
+alias -s log=vi
+alias -s md=vi
+alias -s py=vi
+alias -s txt=vi
+alias -s vim=vi
+alias -s gz='tar -xzvf'
+alias -s tgz='tar -xzvf'
+alias -s zip='unzip'
+alias -s bz2='tar -xjvf'
+
+#7z aliases
+alias  7a='7z a'
+alias -s 7z='7z e'
+
+#rar aliases
+alias  ra='rar a'
+alias -s rar='rar e'
+
+#Enable powerline
+#. /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh 
+#
+#
+#===========================================================================
+#Settings copied from
+#https://webdevstudios.com/2015/02/10/a-beginners-guide-to-the-best-command-line-tools/
+#===========================================================================
+#If you’re ever in a large directory and you try to tab complete, this will add some waiting dots so you know that Zsh is still working. A bit more helpful than just mashing the tab key until you see something.
+COMPLETION_WAITING_DOTS="true" 
+
+#This will highlight the patterns you specify in a color of your choice. 
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+
+ #These will set our history to allow a ton more entires, ignore duplicate commands, and ignore some of the commands we don’t need a history of. This is useful because if you want to search for that command you ran a few weeks ago, you can do that a lot easier.
+ export HISTSIZE=32768
+ export HISTFILESIZE=$HISTSIZE
+ export HISTCONTROL=ignoredups
+ export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"

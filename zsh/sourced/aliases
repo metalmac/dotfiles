@@ -1,0 +1,79 @@
+#!/bin/zsh
+# This is my zsh aliases configurations
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+#source .zshrc aliases
+#alias reload="source ~/.zshrc && echo 'Your zshrc file has been reloaded'"
+# some more ls aliases
+alias ll='ls -alF --time-style=full-iso'
+alias la='ls -A'
+alias l='ls -CF'
+alias ls='ls -lxF --time-style=long-iso --color=always'
+
+#rm aliases 
+alias rmv='rm -rvf'
+
+#rm aliases 
+alias mdv='mkdir -v'
+
+#cp aliases 
+alias cpv='cp -rvf'
+#alias cpf='rsync -avzpogh -e /dev/null --progress'
+
+#mv aliases 
+alias mvv='mv -vf'
+
+#clear aliases  
+alias cls='clear'
+
+#vim aliases
+alias vi="vim"
+
+#cd aliases 
+alias c..="cd .."
+alias v='f -e vim' # quick opening files with vim
+
+#grep aliases 
+alias grep="grep --color=auto"
+alias grp="grep --color=auto -HnTr"
+alias grep="grep225 --color=auto"
+alias grp="grep225 --color=auto -HnTr"
+
+#file default open-way aliases 
+alias -s c=vi
+alias -s cpp=vi
+alias -s h=vi
+alias -s js=vi
+alias -s java=vi
+alias -s log=vi
+alias -s md=vi
+alias -s py=vi
+alias -s txt=vi
+alias -s vim=vi
+alias -s gz='tar -xzvf'
+alias -s tgz='tar -xzvf'
+alias -s tar='tar -xvf'
+alias -s bz2='tar -xjvf'
+alias -s zip='unzip'
+alias -s zsh='vi'
+alias -s csh='vi'
+alias -s ksh='vi'
+alias -s sh='vi'
+alias -s xz='xz -dfkv'
+
+#7z aliases
+alias  7a='7z a'
+alias -s 7z='7z x'
+
+#rar aliases
+alias  ra='rar a'
+alias -s rar='rar e'
+
