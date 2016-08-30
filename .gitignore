@@ -1,0 +1,6 @@
+#Git 进行提交修改时，忽略列表
+patches/
+*.suo
+bin/
+obj/
+*.swp
