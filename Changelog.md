@@ -1,5 +1,7 @@
 
 #This file records the updates of my dotfiles;
+Version 0.1.7
+    update the _vimrc file for linux worstation;
 
 Version 0.1.6
     update the _vimrc file for windows worstation and homeusing computer;
