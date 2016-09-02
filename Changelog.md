@@ -2,6 +2,10 @@
 #This file records the updates of my dotfiles;
 
 @2016.09.02
+Version 0.2.0
+    1.Modify the tmux history-limit, update the .tmux.conf file; 
+
+@2016.09.02
 Version 0.1.9
     Add 'lk','lm' for ls alias; 
 
