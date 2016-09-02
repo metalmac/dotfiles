@@ -13,10 +13,12 @@
 #source .zshrc aliases
 #alias reload="source ~/.zshrc && echo 'Your zshrc file has been reloaded'"
 # some more ls aliases
-alias ll='ls -alF --time-style=full-iso'
-alias la='ls -A'
-alias l='ls -CF'
+alias ll='ls -alF --time-style=full-iso --color=always'
+alias la='ls -A --color=always'
+alias l='ls -CF --color=always'
 alias ls='ls -lxF --time-style=long-iso --color=always'
+alias lm='ls -alF --time-style=full-iso --color=always --block-size=MB -stat'
+alias lk='ls -alF --time-style=full-iso --color=always --block-size=KB -stat'
 
 #rm aliases 
 alias rmv='rm -rvf'

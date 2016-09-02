@@ -2,6 +2,9 @@
 #This file records the updates of my dotfiles;
 
 @2016.09.02
+Version 0.1.9 Add 'lk','lm' for ls alias; 
+
+@2016.09.02
 Version 0.1.8
     update the _vimrc file for windows worstation and homeusing computer,linux workstation;
 
