@@ -3,7 +3,7 @@
 
 @2016.09.02
 Version 0.1.8
-    update the _vimrc file for windows worstation and homeusing computer;;
+    update the _vimrc file for windows worstation and homeusing computer,linux workstation;
 
 Version 0.1.7
     update the _vimrc file for linux worstation;
