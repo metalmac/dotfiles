@@ -2,7 +2,8 @@
 #This file records the updates of my dotfiles;
 
 @2016.09.02
-Version 0.1.9 Add 'lk','lm' for ls alias; 
+Version 0.1.9
+    Add 'lk','lm' for ls alias; 
 
 @2016.09.02
 Version 0.1.8
