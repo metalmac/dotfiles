@@ -688,7 +688,7 @@ nnoremap <Leader>gpl :Gpull --all<cr>
 nnoremap <Leader>gph :Gpush --all<cr>
 nnoremap <Leader>gpg :Gpush --tags<cr>
 nnoremap <Leader>gc :Gcommit<cr>
-nnoremap <Leader>gr :Gwrite<cr>
+nnoremap <Leader>gw :Gwrite<cr>
 nnoremap <Leader>gs :Gstatus<cr>
 nnoremap <Leader>gl :Glog --<cr>
 nnoremap <Leader>gf :Gfetch --all<cr>
