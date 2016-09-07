@@ -3,6 +3,7 @@
 @2016.09.07
 Version 0.2.1
     1.Update the .vimrc for linux workstation via add mapping for git push --tags; 
+    2.Update the _vimrc for windows workstaion and home-using computer via add mapping for git push --tags; 
 
 @2016.09.02
 Version 0.2.0
