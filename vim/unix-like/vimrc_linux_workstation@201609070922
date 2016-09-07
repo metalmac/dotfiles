@@ -926,7 +926,7 @@ nnoremap <Leader>ssl :SessionShowLast<cr>
 nnoremap <Leader><Leader>g :Git <C-R><cr>
 nnoremap <Leader>gpl :Gpull --all<cr>
 nnoremap <Leader>gph :Gpush --all<cr>
-nnoremap <Leader>gpa :Gpush --tags<cr>
+nnoremap <Leader>gpg :Gpush --tags<cr>
 nnoremap <Leader>gc :Gcommit<cr>
 nnoremap <Leader>gw :Gwrite<cr>
 nnoremap <Leader>gs :Gstatus<cr>

@@ -1,6 +1,10 @@
 
 #This file records the updates of my dotfiles; @2016.09.07
 @2016.09.07
+Version 0.2.1.2
+    1.Update the .vimrc for linux workstation via modify the :Git push --tags mapping to <Leader>gpg;
+
+@2016.09.07
 Version 0.2.1.1
     1.Update the .vimrc for linux workstation via modify the :Gwrite mapping to <Leader>gw; 
     2.Update the _vimrc for windows workstaion and home-using computer via modifying the :Gwrite mapping to <Leader>gw; 
