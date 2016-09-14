@@ -1,5 +1,10 @@
 
 #This file records the updates of my dotfiles; @2016.09.07
+
+@2016.09.14
+Version 0.3.0
+    1.Update the vim7.4 to vim 8.0, add new .vimrc file for vim 8.0 into the dotfiles git;
+
 @2016.09.14
 Version 0.2.2.1
     1.Backup the _vimrc file for linux workstation; 
