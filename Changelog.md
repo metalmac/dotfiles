@@ -1,6 +1,11 @@
 
 #This file records the updates of my dotfiles; @2016.09.07
 
+@2016.09.18
+Version 0.3.2
+    1.Update _vimrc file for windows IDE via adding key-mapping for command-t and for windows editing;
+    2.Add mysys2 relevant dotfiles into dotfiles-git;
+
 @2016.09.16
 Version 0.3.1
     1.Update .vimrc file for linux workstation by adding the ycm plugin support;
