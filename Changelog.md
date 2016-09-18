@@ -1,5 +1,10 @@
 
 #This file records the updates of my dotfiles
+
+@2016.09.18
+Version 0.3.4
+    1.Update _vimrc file for windows IDE via adding key-mapping for letter case conversion;
+
 @2016.09.18
 Version 0.3.3
     1.Update .vimrc file for linux workstation via adding key-mapping for command-t and for windows editing;
