@@ -1,5 +1,8 @@
 
 #This file records the updates of my dotfiles
+@2016.09.18
+Version 0.3.3
+    1.Update .vimrc file for linux workstation via adding key-mapping for command-t and for windows editing;
 
 @2016.09.18
 Version 0.3.2
