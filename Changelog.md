@@ -1,5 +1,11 @@
 
 #This file records the updates of my dotfiles
+@2016.09.18
+Version 0.3.5
+    1.Update .vimrc file for linux workstation via adding key-mapping for command-t plugin,
+      adding key-mapping for letter case conversion;
+    2.Updating .zshrc for zsh;
+    3.Add xmodmap into dotfiles-git to support swapping CapsLock to Ctrl;
 
 @2016.09.18
 Version 0.3.4
