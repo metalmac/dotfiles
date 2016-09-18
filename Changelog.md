@@ -1,5 +1,5 @@
 
-#This file records the updates of my dotfiles; @2016.09.07
+#This file records the updates of my dotfiles
 
 @2016.09.18
 Version 0.3.2
