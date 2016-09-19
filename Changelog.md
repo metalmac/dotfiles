@@ -1,8 +1,12 @@
 
 #This file records the updates of my dotfiles
 @2016.09.19
+Version 0.3.6.1
+    1.Update .vimrc file for windows IDE,adding <Leader>gt ,<Leader>gl3 mapping;
+
+@2016.09.19
 Version 0.3.6
-    1.Update .vimrc file for windows IDE,adding <Leader>gpa mapping, modifying the <Leader>gph and <Leader>gpg mapping;
+    1.Update .vimrc file for windows IDE,adding <Leader>gaa mapping, modifying the <Leader>gph and <Leader>gpg mapping;
 
 @2016.09.18
 Version 0.3.5
