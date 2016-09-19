@@ -2,6 +2,10 @@
 #This file records the updates of my dotfiles
 @2016.09.19
 Version 0.3.7
+    1.Modify the description of .capslockSwapRctrl;
+
+@2016.09.19
+Version 0.3.7
     1.Update .vimrc file for linux workstation, via adding some key-mapping for vim-fugitive plugin;
     2.Update .zshrc file for linux workstation, via fixing the xmodmap failed issue;
     3.Update oh-my-zsh setting file;

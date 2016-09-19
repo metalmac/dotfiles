@@ -1,6 +1,6 @@
 
 !
-! Swap Caps_Lock and Control_L
+! Swap Caps_Lock and Control_R
 !
 remove Lock = Caps_Lock
 remove Control = Control_R
