@@ -1,6 +1,10 @@
 
 #This file records the updates of my dotfiles
 @2016.09.19
+Version 0.3.9.1
+    1.Update _vimrc file for uncommenting “set encoding=utf8" to enforce the encoding format issue in linux worstation;
+
+@2016.09.19
 Version 0.3.9
     1.Update _vimrc file for windows IDE,adding settings and keymappings for ycm and UltiSnips plugins
       modifying the ":tabn" and  ":tabp" keymapping;
