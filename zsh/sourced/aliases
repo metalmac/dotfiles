@@ -28,7 +28,8 @@ alias mdv='mkdir -v'
 
 #cp aliases 
 alias cpv='cp -rvf'
-#alias cpf='rsync -avzpogh -e /dev/null --progress'
+alias cpr='rsync -avzpogh -e /dev/null --progress'
+alias cpf='rsync -avzpogh -e /dev/null --progress'
 
 #mv aliases 
 alias mvv='mv -vf'
