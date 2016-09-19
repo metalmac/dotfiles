@@ -1,6 +1,6 @@
-#!/bin/zsh
-# Path to your oh-my-zsh installation.
+#!/bin/zsh  # Path to your oh-my-zsh installation.
   export ZSH=/root/.oh-my-zsh
+#export DISPLAY=:0.0
 
 # User configuration
 
@@ -53,6 +53,7 @@ plugins=(git
 #
 #source relative zsh settings file
 source $ZSH/oh-my-zsh.sh
+#source ~/.profile
 
 for file in ~/.oh-my-zsh/custom/sourced/* ; do
        source "$file"
@@ -60,3 +61,7 @@ for file in ~/.oh-my-zsh/custom/sourced/* ; do
 
 #Automatically mount shared folder from host Windows to virtual machine Linux as Machine booted
 . ~/mount_shared_folder.zsh
+
+#Automatically swap CapsLock with Right Ctrl
+xmodmap ~/.capslockSwapRctrl 2>/dev/null
+
