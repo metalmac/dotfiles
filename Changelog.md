@@ -1,6 +1,10 @@
 
 #This file records the updates of my dotfiles
 @2016.09.19
+Version 0.3.8
+    1.Update _vimrc file for uncommenting “set encoding=utf8" to fix the ycm decode issue in windows IDE;
+
+@2016.09.19
 Version 0.3.7.1
     1.Update oh-my-zsh setting file, adding cpr alias for rsync;
     2.Add .profile into bash folder;
