@@ -1,6 +1,10 @@
 
 #This file records the updates of my dotfiles
 @2016.09.20
+Version 0.4.1
+    1.Rename the vimrc file both for windows and linux IDE, simplify it by uniform them to “vimrc_OS_IDE@XXXX;
+
+@2016.09.20
 Version 0.4.0
     1.Add batch into dotfiles-git;
 
