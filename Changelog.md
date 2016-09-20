@@ -1,5 +1,9 @@
 
 #This file records the updates of my dotfiles
+@2016.09.20
+Version 0.4.0
+    1.Add batch into dotfiles-git;
+
 @2016.09.19
 Version 0.3.9.1
     1.Update _vimrc file for uncommenting “set encoding=utf8" to enforce the encoding format issue in linux worstation;
