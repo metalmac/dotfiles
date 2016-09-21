@@ -1,5 +1,8 @@
 
 #This file records the updates of my dotfiles
+@2016.09.21
+Version 0.4.3
+    1.Update .vimrc file for linux IDE by rearrange the ycm plugin setting options;
 
 @2016.09.20
 Version 0.4.2

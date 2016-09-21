@@ -1,0 +1,998 @@
+"==========================================================
+"linux vim origin configuration @2014.12.10
+"==========================================================
+" An example for a vimrc file.
+"
+" Maintainer:	Bram Moolenaar <Bram@vim.org>
+" Last change:	2011 Apr 15
+"
+" To use it, copy it to
+"     for Unix and OS/2:  ~/.vimrc
+"	      for Amiga:  s:.vimrc
+"  for MS-DOS and Win32:  $VIM\_vimrc
+"	    for OpenVMS:  sys$login:.vimrc
+
+" When started as "evim", evim.vim will already have done these settings.
+if v:progname =~? "evim"
+  finish
+endif
+
+" Use Vim settings, rather than Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
+if has("vms")
+  set nobackup		" do not keep a backup file, use versions instead
+else
+  set backup		" keep a backup file
+endif
+"set history=50		" keep 50 lines of command line history
+set ruler		" show the cursor position all the time
+set showcmd		" display incomplete commands
+set incsearch		" do incremental searching
+
+" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
+" let &guioptions = substitute(&guioptions, "t", "", "g")
+
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
+" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
+" so that you can undo CTRL-U after inserting a line break.
+inoremap <C-U> <C-G>u<C-U>
+
+" In many terminal emulators the mouse works just fine, thus enable it.
+if has('mouse')
+  set mouse=a
+endif
+
+"" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if &t_Co > 2 || has("gui_running")
+  syntax on
+  set hlsearch
+endif
+
+" Only do this part when compiled with support for autocommands.
+if has("autocmd")
+
+  " Enable file type detection.
+  " Use the default filetype settings, so that mail gets 'tw' set to 72,
+  " 'cindent' is on in C files, etc.
+  " Also load indent files, to automatically do language-dependent indenting.
+  filetype plugin indent on
+
+  " Put these in an autocmd group, so that we can delete them easily.
+  augroup vimrcEx
+  au!
+
+  " For all text files set 'textwidth' to 78 characters.
+  autocmd FileType text setlocal textwidth=78
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  " Also don't do it when the mark is in the first line, that is the default
+  " position when opening a file.
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+
+  augroup END
+
+else
+
+  set autoindent		" always set autoindenting on
+
+endif " has("autocmd")
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
+"End here
+"==========================================================
+"
+"==========================================================
+"Metalmac's vim Config starts here
+"Modified by metalmac.kyle@2014.12.23,11:16
+"==========================================================
+"Disable Up, Down, Left, Right Arrow
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
+"==========================================================
+"Set cursor shape in different mode(normal,insert,visual)
+"==========================================================
+"let &t_SI= "
+""\<Esc>]50;CursorShape=1\x7"
+"let &t_EI="
+"\<Esc>]50;CursorShape=0\x7"
+if has("autocmd")
+	au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+	au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+endif
+
+
+
+"==========================================================
+"Fix the & Command
+"==========================================================
+nnoremap & :&&<CR>
+xnoremap & :&&<CR>
+
+
+"Set Disable Find highlight mode
+nnoremap <Leader>l :<C-u>nohlsearch<CR><C-l>
+
+"==========================================================
+"Disable Caps Lock ,map to Ctrl
+"==========================================================
+
+
+"==========================================================
+"Expand current file working directory
+
+"==========================================================
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
+
+"Set grep.vim
+nnoremap <silent> <F3> :Grep<CR>
+
+
+""========================================================
+"Common Setting for vim 
+""Modified by metalmac.kyle@2016.09.18,12:40
+"========================================================
+"
+" >>
+" 文件类型侦测
+
+" 开启文件类型侦测
+"filetype off
+" 根据侦测到的不同类型加载对应的插件
+filetype plugin on
+" <<
+" 定义快捷键到行首和行尾
+nmap lb 0
+nmap le $
+
+"去除Windows下对Ctrl-y的映射覆盖,并修改上下滚动映射命令
+"unmap <C-y>
+nnoremap<A-e> <C-e>
+nnoremap<A-y> <C-y>
+nnoremap<A-d> <C-d>
+nnoremap<A-u> <C-u>
+nnoremap<A-f> <C-f>
+nnoremap<A-b> <C-b>
+"
+" 设置快捷键将选中文本块复制至系统剪贴板
+vnoremap <Leader>y "+y
+" 设置快捷键将系统剪贴板内容粘贴至vim
+nmap <Leader>p "+p
+
+" 定义快捷键关闭当前分割窗口
+nmap <Leader>q :q<CR>
+" 定义快捷键保存当前窗口内容
+nmap <Leader>w :w<CR>
+nmap <Leader>wq :wq<CR>
+" 定义快捷键保存所有窗口内容并退出 vim
+nmap <Leader>WQ :wa<CR>:q<CR>
+" 不做任何保存，直接退出 vim
+nmap <Leader><Leader>q :q!<CR>
+
+" 设置快捷键遍历子窗口
+" 依次遍历
+nnoremap nw <C-W><C-W>
+" 关闭窗口
+nnoremap <Leader>cw <C-w>c
+" 跳转至右方的窗口
+nnoremap <Leader>lw <C-W>l
+" 跳转至方的窗口
+nnoremap <Leader>hw <C-W>h
+" 跳转至上方的子窗口
+nnoremap <Leader>kw <C-W>k
+" 跳转至下方的子窗口
+nnoremap <Leader>jw <C-W>j
+
+"映射窗口切分打开方式
+nnoremap <Leader>sw <C-w>s
+nnoremap <Leader>vw <C-w>v
+"
+"" 映射调整窗口大小快捷键
+nnoremap <Leader>- <C-w>- 
+nnoremap <Leader>= <C-w>+
+nnoremap <Leader>[ <C-w>>
+nnoremap <Leader>] <C-w><
+
+" 定义快捷键在结对符之间跳转，助记 pair
+nmap <Leader>pa %
+
+" vim 自身命令行模式智能补全
+set wildmenu 
+
+" 开启语法高亮功能
+syntax enable
+" 允许用指定语法高亮配色方案替换默认方案
+syntax on
+
+" >>
+" 缩进
+
+" 自适应不同语言的智能缩进
+filetype indent on
+
+" 将制表符扩展为空格
+set expandtab
+            
+" 设置编辑时制表符占用空格数
+set tabstop=4
+" 设置格式化时制表符占用空格数
+set shiftwidth=4
+" 让 vim 把连续数量的空格视为一个制表符
+set softtabstop=4
+
+" 缩进可视化插件 Indent Guides
+" 随 vim 自启动
+"let g:indent_guides_enable_on_vim_startup=1
+" 从第二层开始可视化显示缩进
+"let g:indent_guides_start_level=2
+" 色块宽度
+"let g:indent_guides_guide_size=1
+" 快捷键 i 开/关缩进可视化
+"nmap <silent> <Leader>i <Plug>IndentGuidesToggle
+
+" <<
+
+" >>
+" 代码折叠
+
+" 基于缩进或语法进行代码折叠
+"set foldmethod=indent
+set foldmethod=syntax
+" 启动 vim 时关闭折叠代码
+set nofoldenable
+
+" <<
+" >>
+" 辅助信息
+
+" 总是显示状态栏
+set laststatus=2
+
+" 显示光标当前位置
+set ruler
+
+" 开启行号显示
+set number
+
+" 高亮显示当前行/列
+set cursorline
+"set cursorcolumn
+" 设置状态栏主题风格
+ let g:Powerline_colorscheme='solarized256'
+" <<
+" 
+
+" >>
+" 查找
+
+" 使用 Grep.vim 插件在工程内全局查找，设置快捷键。快捷键速记法：search in project
+nnoremap <Leader>sp :Grep -ir<CR><CR><CR>
+" 使用 Grep.vim 插件在工程内全局查找，设置快捷键。快捷键速记法：search in buffer
+nnoremap <Leader>sb :GrepBuffer -ir<CR><CR>
+
+" <<
+
+"=============================================
+"Setting for  Command record history
+"Start here
+"====================================
+set history=2000
+
+"Set TabPage movement operation
+map <Leader>tp :tabp<CR>
+map <Leader>tf :tabn<CR>
+map <Leader>tn :tabnew<CR>
+map <Leader>tc :tabc<CR>
+map <Leader>to :tabo<CR>
+map <S-k> <C-]><CR>
+
+map <Leader>s :update<CR>
+
+"Set Key mapping for helptags
+map <Leader>ht :helptags /usr/share/vim/vim74/doc<CR>
+map <Leader><Leader>ht :helptags ~/.vim/doc<CR>
+
+"Set Font
+"colorscheme murphy
+set nobackup
+"set cul
+set ff=unix
+
+
+"Set Text window line and row display mode 
+map <Leader>sn :set nu<CR>
+map <Leader>nsn :set nonu<CR>
+map <Leader>scl :set cul<CR>
+map <Leader>nsl :set nocul<CR>
+map <Leader>scc :set cuc<CR>
+map <Leader>ncc :set nocuc<CR>
+
+"set guifont=Bitstream_Vera_Sans_Mono:h12:cANSI
+"set gfw=Ó×Ô²:h12:cGB2312
+
+set encoding=utf-8
+let &termencoding=&encoding
+"set termencoding=cp936
+
+set fileencodings=utf-8,gbk,ucs-bom,cp936
+"插入模式下,替换刚输入单词为大写状态,并切换到单词末尾
+inoremap <Leader>U <ESC>gUiwea
+"
+"插入模式下,替换刚输入单词为小写状态,并切换到单词末尾
+inoremap <Leader>u <ESC>guiwea
+
+
+" >>
+" 替换
+
+" 替换函数。参数说明：
+" confirm：是否替换前逐一确认
+" wholeword：是否整词匹配
+" replace：被替换字符串
+function! Replace(confirm, wholeword, replace)
+    wa
+    let flag = ''
+    if a:confirm
+        let flag .= 'gec'
+    else
+        let flag .= 'ge'
+    endif
+    let search = ''
+    if a:wholeword
+        let search .= '\<' . escape(expand('<cword>'), '/\.*$^~[') . '\>'
+    else
+        let search .= expand('<cword>')
+    endif
+    let replace = escape(a:replace, '/\&~')
+    execute 'argdo %s/' . search . '/' . replace . '/' . flag . '| update'
+endfunction
+" 不确认、非整词
+nnoremap <Leader>R :call Replace(0, 0, input('Replace '.expand('<cword>').' with: '))<CR>
+" 不确认、整词
+nnoremap <Leader>rw :call Replace(0, 1, input('Replace '.expand('<cword>').' with: '))<CR>
+" 确认、非整词
+nnoremap <Leader>rc :call Replace(1, 0, input('Replace '.expand('<cword>').' with: '))<CR>
+" 确认、整词
+nnoremap <Leader>rcw :call Replace(1, 1, input('Replace '.expand('<cword>').' with: '))<CR>
+nnoremap <Leader>rwc :call Replace(1, 1, input('Replace '.expand('<cword>').' with: '))<CR>
+
+" <<
+"
+"Define for !re command
+map<Leader>re :re! <C-R><CR>
+
+"End here
+"==========================================r
+
+"Searching and folding the irrelevant stuff
+"作者：kidneyball
+"链接：https://www.zhihu.com/question/30782510/answer/70078216
+"来源：知乎
+nnoremap <Leader>zc :setlocal foldexpr=(getline(v:lnum)=~@/)?0:(getline(v:lnum-1)=~@/)\\|\\|(getline(v:lnum+1)=~@/)?1:2 foldmethod=expr foldlevel=0 foldcolumn=2<CR>:set foldmethod=manual<CR><CR>zc" 
+
+"Set find command 
+"nnoremap <silent> <S-F3> :find<CR>
+"
+"
+"==========================================r
+"Set tagbar
+"
+"==========================================r
+map<F8> :TagbarToggle<CR>
+map<Leader>tb :TagbarToggle<CR>
+"==========================================r
+"Set vim-startify
+"Start here
+"===========j==============================
+"Set NEDTree and vim-startify autostart display 
+autocmd VimEnter *
+		\   if !argc()
+		\ |   Startify
+		\ |   NERDTree
+		\ |   wincmd w
+		\ | endif
+
+"When opening a file or bookmark, change to its directory.
+    let g:startify_change_to_dir = 1
+"Set bookmark
+let g:startify_bookmarks = ['~/.bashrc','~/.zshrc','~/.vimrc','~/.viminfo','~/.tmux.conf','~/.tmux.conf.local','~/.vim/macros/gdb_mappings.vim','/usr/include','~/tlpi_src/tlpi-dist/lib']
+
+
+"=================================================
+"NERDTree Setting 
+"=================================================
+"Set NERDTree keyboard mapper
+map <F6> :NERDTreeToggle<CR>
+map <Leader>nf :NERDTreeFind<CR>
+ map <Leader>no :NERDTree 
+" 显示隐藏文件
+let NERDTreeShowHidden=1
+" NERDTree 子窗口中不显示冗余帮助信息
+let NERDTreeMinimalUI=1
+" 删除文件时自动删除文件对应 buffer
+let NERDTreeAutoDeleteBuffer=1
+ " 显示行号
+ let NERDTreeShowLineNumbers=1
+ let NERDTreeAutoCenter=1
+ " 设置宽度
+ let NERDTreeWinSize=31
+ " 忽略一下文件的显示
+ let NERDTreeIgnore=['\.pyc','\~$','\.swp']
+ " 显示书签列表
+ let NERDTreeShowBookmarks=1
+ "End here
+
+"=================================================
+"Set TabNew and Startify both shortcut
+"Set AutoLoad function
+"Start here
+"=================================================
+map<F7> :call Start_NewTabAndNERDTree()<CR>
+	"This function is to create a new tab with Startify window and NERDTree
+	"window.
+	function Start_NewTabAndNERDTree()
+			execute ":tabnew"		
+			execute ":Startify"		
+			execute ":set nu"
+			execute	":set cul"
+			execute ":NERDTreeToggle"		
+			execute ":set nu"
+		endfunction
+
+
+"Set VOom
+map <Leader>v :Voom<CR>
+
+"===============================================
+"Setting for Indent Guides
+"===============================================
+  let g:indent_guides_auto_colors = 1
+"===============================================
+
+""========================================================
+"Set ctags && cscope
+"""========================================================
+
+map <Leader>ct :call Do_CsTag()<CR>
+"nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+"nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+"nmap <C-@>t :cs find t <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+"nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+"nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>:copen<CR>
+"nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>:copen<CR>
+"nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+"nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+"nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+"nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+"nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader><Leader>cc :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader><Leader>ct :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader><Leader>ce :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader><Leader>cf :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <Leader><Leader>ci :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <Leader><Leader>cd :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader><Leader>cs :cs find s <C-R>=expand("<cword>")<CR><CR>
+function Do_CsTag()
+    let dir = getcwd()
+    if filereadable("tags")
+        if(g:iswindows==1)
+            let tagsdeleted=delete(dir."\\"."tags")
+        else
+            let tagsdeleted=delete("./"."tags")
+        endif
+        if(tagsdeleted!=0)
+            echohl WarningMsg | echo "Fail to do tags! I cannot delete the tags" | echohl None
+            return
+        endif
+    endif
+    if has("cscope")
+        silent! execute "cs kill -1"
+    endif
+    if filereadable("cscope.files")
+        if(g:iswindows==1)
+            let csfilesdeleted=delete(dir."\\"."cscope.files")
+        else
+            let csfilesdeleted=delete("./"."cscope.files")
+        endif
+        if(csfilesdeleted!=0)
+            echohl WarningMsg | echo "Fail to do cscope! I cannot delete the cscope.files" | echohl None
+            return
+        endif
+    endif
+    if filereadable("cscope.out")
+        if(g:iswindows==1)
+            let csoutdeleted=delete(dir."\\"."cscope.out")
+        else
+            let csoutdeleted=delete("./"."cscope.out")
+        endif
+        if(csoutdeleted!=0)
+            echohl WarningMsg | echo "Fail to do cscope! I cannot delete the cscope.out" | echohl None
+            return
+        endif
+    endif
+    if(executable('ctags'))
+        "silent! execute "!ctags -R --c-types=+p --fields=+S *"
+        silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."
+    endif
+    if(executable('cscope') && has("cscope") )
+        if(g:iswindows!=1)
+            silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > cscope.files"
+        else
+            silent! execute "!dir /s/b *.c,*.cpp,*.h,*.java,*.cs >> cscope.files"
+        endif
+        silent! execute "!cscope -b"
+        execute "normal :"
+        if filereadable("cscope.out")
+            execute "cs add cscope.out"
+        endif
+    endif
+endfunction
+"========================================================
+
+"========================================================
+"Vundle Setting
+""========================================================
+
+set nocompatible              " be iMproved, required
+filetype off                " required
+
+" set the runtime path to include Vundle and initialize
+ set rtp+=~/.vim/bundle/Vundle.vim
+ call vundle#begin()
+" " alternatively, pass a path where Vundle should install plugins
+" "call vundle#begin('~/some/path/here')
+"
+" " let Vundle manage Vundle, required
+ Plugin 'gmarik/Vundle.vim'
+"
+" " The following are examples of different formats supported.
+" " Keep Plugin commands between vundle#begin/end.
+" " plugin on GitHub repo
+" " git repos on your local machine (i.e. when working on your own plugin)
+" Plugin 'file:///home/gmarik/path/to/plugin'
+" " The sparkup vim script is in a subdirectory of this repo called vim.
+" " Pass the path to set the runtimepath properly.
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" " Avoid a name conflict with L9
+ Plugin 'L9'
+" " Git plugin not hosted on GitHub
+ Plugin 'https://github.com/wincent/command-t'
+ Plugin 'tpope/vim-dispatch'
+ Plugin 'scrooloose/syntastic'
+ Plugin 'mhinz/vim-startify'
+ Plugin 'https://github.com/bling/vim-airline'
+ Plugin 'https://github.com/scrooloose/nerdtree'
+ Plugin 'https://github.com/vim-scripts/VOoM'
+ Plugin 'https://github.com/majutsushi/tagbar'
+ Plugin 'https://github.com/yegappan/grep'
+ Plugin 'https://github.com/scrooloose/nerdcommenter'
+ 
+ "Install YouCompleteme plugin
+ Plugin 'https://github.com/Valloric/YouCompleteMe'
+
+"Install vim-abolish plugin
+Plugin  'https://github.com/tpope/vim-abolish'
+
+"Install UltiSnips plugin
+Plugin 'https://github.com/SirVer/ultisnips'
+
+"Install Easymotion plugin
+Plugin  'https://github.com/Lokaltog/vim-easymotion'
+
+"Install vim-signature plugin
+Plugin  'https://github.com/kshenoy/vim-signature'
+
+"Install vim-lldb plugin
+Plugin 'https://github.com/gilligan/vim-lldb'
+
+"Install vim-instant-markdown
+Plugin  'https://github.com/suan/vim-instant-markdown'
+
+"Install vim-markdown
+Plugin 'https://github.com/tpope/vim-markdown'
+"Install colde_complete plugin
+"Plugin 'https://github.com/mbbill/code_complete'
+"Install vim-tmux-navigator
+Plugin 'christoomey/vim-tmux-navigator'
+
+"Install vim-husk
+Plugin 'vim-utils/vim-husk'
+
+"Install vim-surround
+Plugin 'https://github.com/tpope/vim-surround'
+
+"Install tmuxline.vim
+Plugin 'https://github.com/edkolev/tmuxline.vim'
+
+"Install vim-plugin-minibufexpl
+Plugin 'https://github.com/weynhamz/vim-plugin-minibufexpl'
+
+"Install vim-fugitive and vim-unimpaired plugin
+Plugin 'https://github.com/tpope/vim-fugitive'
+Plugin 'https://github.com/tpope/vim-unimpaired'
+
+"Install session.vim plugin
+Plugin 'https://github.com/vim-scripts/sessionman.vim'
+
+"Install vim-textobj user/entire plugin
+Plugin 'https://github.com/kana/vim-textobj-user'
+Plugin 'https://github.com/kana/vim-textobj-entire/'
+" " All of your Plugins must be added before the following line
+ call vundle#end()            " required
+ filetype plugin indent on    " required
+" " To ignore plugin indent changes, instead use:
+" "filetype plugin on
+" "
+" " Brief help
+" " :PluginList       - lists configured plugins
+" " :PluginInstall    - installs plugins; append `!` to update or just
+" :PluginUpdate
+" " :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" " :PluginClean      - confirms removal of unused plugins; append `!` to
+" auto-approve removal
+" "
+" " see :h vundle for more details or wiki for FAQ
+" " Put your non-Plugin stuff after this line
+" ""========================================================
+
+
+""""""""""""""""""""""""""""""
+" vimgdb setting
+""""""""""""""""""""""""""""""
+ "let g:vimgdb_debug_file = ""
+ "run macros/gdb_mappings.vim"
+"set gdbprg=/usr/bin/gdb
+"set asm=0				" don't show any assembly stuff
+
+""""""""""""""""""""""""""""""
+"YouCompleteme  setting 
+"Modified by metalmac.kyle@2016.09.21,12:59
+""""""""""""""""""""""""""""""
+"让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
+"1) 相关变量设置
+"let g:ycm_extra_conf_globlist = ['~/.vim/bundle/YouCompleteMe/cpp/ycm/*','!~/*']
+
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_seed_identifiers_with_syntax = 1
+set tags +=/usr/include/tags
+set tags +=/usr/local/include/tags
+set tags +=/usr/include/i386-linux-gnu/tags    
+set tags +=/usr/share/vim/vim74/doc/tags
+"youcompleteme  默认tab  s-tab 和自动补全冲突
+let g:ycm_key_list_select_completion=['<c-n>']
+let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_key_list_previous_completion=['<c-p>']
+let g:ycm_key_list_previous_completion = ['<Up>']
+let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
+let g:ycm_collect_identifiers_from_tags_files = 1 " 开启 YCM
+let g:ycm_auto_trigger=1 "开启ycm自动加载功能
+"在注释输入中也能补全
+let g:ycm_complete_in_comments = 1
+"在字符串输入中也能补全
+let g:ycm_complete_in_strings = 1
+"注释和字符串中的文字也会被收入补全
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+
+"基于标签引擎
+let g:ycm_min_num_of_chars_for_completion=2	"
+"从第2个键入字符就开始罗列匹配项
+let g:ycm_cache_omnifunc=0	" 禁止缓存匹配项,每次都重新生成匹配项
+let g:ycm_seed_identifiers_with_syntax=1	" 语法关键字补全
+let g:ycm_use_ultisnips_completer = 1 "ycm使用UltiSnip补全
+"
+"2) 相关功能键映射设置
+nnoremap <leader>lo :lopen<CR>	"open locationlist
+nnoremap <leader>lc :lclose<CR>	"close locationlist
+inoremap <leader><leader> <C-x><C-o>
+"Ycm跳转命令映射
+"跳转到定义处
+nnoremap <leader>yfc :YcmForceCompileAndDiagnostics<CR>	
+noremap <leader>yld :YcmCompleter GoToDefinitionElseDeclaration<CR>
+noremap <leader>yd :YcmCompleter GoToDefinition<CR>
+noremap <leader>yl :YcmCompleter GoToDeclaration<CR>
+noremap <leader>yi :YcmCompleter GoToInclude<CR>
+noremap <leader>ydi :YcmCompleter :YcmDebugInfo<CR>
+"
+"3) 自定义函数
+set completeopt=longest,menu	
+map<leader>hpw :call HidePreviewWindow()<CR>
+map<leader>opw :call OpenPreviewWindow()<CR>
+
+"开启离开插入模式后自动关闭预览窗口功能
+function HidePreviewWindow()
+    autocmd  InsertLeave * if pumvisible() == 0 |pclose |endif	
+endfunction
+
+"取消离开插入模式后自动关闭预览窗口功能
+function OpenPreviewWindow()
+    autocmd  InsertLeave * if pumvisible() != 0 |pclose!|endif	
+endfunction
+
+"autocmd InsertLeave * if pumvisible() == 0|pclose|endif	"离开插入模式后自动关闭预览窗口
+"回车即选中当前项
+inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"	
+"上下左右键的行为 会显示其他信息
+inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+
+"""""End here"""""""""""""""""""""""""
+
+"===============================================
+""Setting for MiniBufExplorer  
+"Start here
+""===============================================
+" 显示/隐藏 MiniBufExplorer 窗口
+ map <Leader>bl :MBEToggle<cr>
+ map <Leader>bla :MBEToggleAll<cr>
+ map <Leader>bf :MBEFocus<cr>
+ "关闭MBE窗口
+ map <Leader>bc :MBEClose<cr>
+ map <Leader>bca :MBECloseAll<cr>
+ " 
+" " buffer 切换快捷键
+ map <Leader>bn :MBEbn<cr>
+ map <Leader>bp :MBEbp<cr>
+"
+"删除当前buffer
+map<Leader>bd :MBEbd<CR>
+"删除序号标志的buffer
+map<Leader><Leader>bd :MBEbd <C-R><CR>
+"nnoremap <Leader>bt :call DeleteSelectedBuffer()<CR>
+
+
+""""""""""""""""""""""""""""""
+"个人vim脚本编程学习使用
+" 删除选定buffer函数。参数说明：
+" seq：被删除的buffer序号
+function! DeleteSelectedBuffer()
+        let g:delseq=input('Buffer number to delete:')
+    execute ':MBEbd' delseq
+endfunction
+
+"""""End here"""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""
+"UltiSnips setting start here
+""""""""""""""""""""""""""""""
+"定义存放代码片段的文件夹 .vim/snippets下，使用自定义和默认的，将会的到全局，有冲突的会提示
+"let g:UltiSnipsSnippetDirectories=["snippets", "bundle/ultisnips/UltiSnips"]
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
+        
+
+"快速插入代码片段
+let g:UltiSnipsExpandTrigger = "<Tab>"
+let g:UltiSnipsListSnippets = "<Leader><Tab>"
+let g:UltiSnipsJumpForwardTrigger = "<Tab>"
+let g:UltiSnipsJumpBackwardTrigger = "s<Tab>"
+
+""""""""""""""""""""""""""""""
+
+
+"========================================================
+"Compiler Setting
+"1)gcc
+"2)llcm,clang
+"========================================================
+"gcc shortcut setting 
+"
+"!gcc -g -Wall -o bit_cal bit_cal.c
+"input("File: ", "", "file")"
+nmap<Leader>gc :!gcc -g -Wall -o<C-R><CR>
+"nnoremap<Leader>gc :call ComplileFileUseGcc()<CR>
+"Gcc compile to assembly code
+"nmap<Leader>gs :!gcc -O1 -S<C-R><CR>
+nmap<Leader>gs  :! rm -rvf *.s<CR>:! gcc -O1 -S <C-R><CR>
+nmap<Leader>gS  :! rm -rvf *.s<CR>:! gcc -O1 -S -m64 <C-R><CR>
+
+function ComplileFileUseGcc()
+        "exec :!gcc -g -Wall<C-R>=call GetComplieFile()
+    if getwinvar(0,'&statusline') != ""
+        :set autochdir
+        :cd %:p:h
+        :only
+        set statusline=
+        :call GetCompileFile()
+    else
+        set statusline+=%F%m%r%h%w\ [POS=%04l,%04v]\ [%p%%]\ [LEN=%L]\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]
+        :set noautochdir
+    endif
+endfunction 
+
+function GetCompileFile()
+    call inputsave()
+    let g:gccfile=input("File: ")
+    "call inputrestore()
+    :!gcc -g -Wall "g:gccfile"<CR>
+endfunction
+   
+
+"========================================================
+"Cmake and make setting 
+"Added by metalmac.kyle@2014.12.28,12:02
+"========================================================
+nmap <Leader><Leader>cm :!cmake CMakeLists.txt<CR><CR>:copen10<CR>
+
+"nmap <Leader>m :wa<CR>:make<CR><CR>:cw<CR>:copen<CR>
+nmap <Leader>m :wa<CR>:make<CR><CR>:copen10<CR>
+
+"========================================================
+"vim-latex Suite setting 
+"Added by metalmac.kyle@2015.01.12,17:13
+"========================================================
+" REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
+" filetype plugin on
+"
+" " IMPORTANT: win32 users will need to have 'shellslash' set so that latex
+" " can be called correctly.
+" set shellslash
+"
+" " IMPORTANT: grep will sometimes skip displaying the file name if you
+" " search in a singe file. This will confuse Latex-Suite. Set your grep
+" " program to always generate a file-name.
+ set grepprg=grep\ -nH\ $*
+"
+" " OPTIONAL: This enables automatic indentation as you type.
+" filetype indent on
+"
+" " OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults
+" to
+" " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
+" " The following changes the default filetype back to 'tex':
+ let g:tex_flavor='latex'
+
+
+"========================================================
+"vim-instant_markdown_ setting 
+"Added by metalmac.kyle@2016.08.02,16:34
+"========================================================
+"By default, vim-instant-markdown will update the display in realtime. If that taxes your system too much, you can specify
+let g:instant_markdown_slow = 1
+
+"By default, vim-instant-markdown will automatically launch the preview window when you open a markdown file. If you want to manually control this behavior, you can specify
+let g:instant_markdown_autostart = 1
+
+"End here
+
+"========================================================
+"vim-instant_markdown runtime files_ setting 
+"Added by metalmac.kyle@2016.08.02,16:43
+"========================================================
+"One difference between this repository and the upstream files in Vim is that the former forces *.md as Markdown, while the latter detects it as Modula-2, with an exception for README.md. If you'd like to force Markdown without installing from this repository, add the following to your vimrc:
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+"
+"If you want to enable fenced code block syntax highlighting in your markdown documents you can enable it in your .vimrc like so:
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
+
+"To disable markdown syntax concealing add the following to your vimrc:
+let g:markdown_syntax_conceal = 0
+
+"End here
+
+"========================================================
+"vim-tmux-navigator  setting 
+"Added by metalmac.kyle@2016.08.04,09:48
+"========================================================
+let g:tmux_navigator_no_mappings = 1
+let g:tmux_navigator_save_on_switch = 1
+
+
+"nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-W>p :TmuxNavigatePrevious<cr>
+
+"End here
+"
+"
+"========================================================
+"vim-tmux-line  setting 
+"Added by metalmac.kyle@2016.08.09,15:09
+"========================================================
+nnoremap <Leader>tl :Tmuxline<cr>
+let g:airline#extensions#tmuxline#enabled = 0
+let g:tmuxline_preset = 'powerline'
+
+"let g:tmuxline_preset = 'crosshair'
+let g:tmuxline_theme = 'powerline'
+ "let g:tmuxline_theme = 'zenburn'
+ "let g:tmuxline_theme = 'jellybeans'
+"End here
+"========================================================
+"session.vim settings
+"Added by metalmac.kyle@2016.08.31,10:40
+"========================================================
+let g:sessionman_save_on_exit=1
+nnoremap <Leader>sl :SessionList<cr>
+nnoremap <Leader>so :SessionOpen<cr>
+nnoremap <Leader>sol :SessionOpenLast<cr>
+nnoremap <Leader>sc :SessionClose<cr>
+nnoremap <Leader>ss :SessionSave<cr>
+nnoremap <Leader>ssa :SessionSaveAs<cr>
+nnoremap <Leader>ssl :SessionShowLast<cr>
+"
+"End here
+"========================================================
+""vim-fugitive settings
+"Added by metalmac.kyle@2016.09.02,09:23
+"Modified by metalmac.kyle@2016.09.19,10:09
+""========================================================
+nnoremap <Leader><Leader>g :Git <C-R><cr>
+nnoremap <Leader>gpl :Gpull --all<cr>
+nnoremap <Leader>gph :Gpush --all<cr>
+nnoremap <Leader><Leader>gph :Git push --all<cr>
+nnoremap <Leader>gpg :Gpush --tags<cr>
+nnoremap <Leader><Leader>gpg :Git push --tags<cr>
+nnoremap <Leader>gc :Gcommit<cr>
+nnoremap <Leader>gw :Gwrite<cr>
+nnoremap <Leader>gs :Gstatus<cr>
+nnoremap <Leader>gl :Glog --<cr>
+nnoremap <Leader>gf :Gfetch --all<cr>
+nnoremap <Leader>gaa :Git add .<cr>
+nnoremap <Leader>gt :Git tag <C-R><cr>
+nnoremap <Leader>gl3 :Git log --decorate -3<cr>
+
+
+"End here
+"
+"========================================================
+""command-t settings
+"Added by metalmac.kyle@2016.09.18,09:45
+""========================================================
+"相关变量定义
+let g:CommandTMaxFiles=20000 "设置最大缓存文件索引数
+let g:CommandTSuppressMaxFilesWarning=0 "阻止最大文件数警告设置
+let g:CommandTMaxHeight=10          "Command-t最大显示高度
+let g:CommandTInputDebounce =10          "设置输入延迟显示时间为10毫秒
+let g:CommandTMatchWindowAtTop=0          "设置匹配像在窗口顶部
+let g:CommandTMatchWindowReverse=1          "设置匹配像是否翻转显示顺序
+let g:CommandTBackspaceMap='<C-h>'        "设置光标回退删除输入字符
+let g:CommandTDeleteMap='<C-d>'         "设置删除光标下字符
+let g:CommandTCursorLeftMap='<C-b>'         "设置光标向左回退
+let g:CommandTCursorRightMap='<C-f>'         "设置光标向右回退
+let g:CommandTRefreshMap='<C-r>'         "设置刷新匹配窗口
+let g:CommandTQuickfixMap='<C-x>'       "设置当前匹配像在Quickfix窗口中显示
+let g:CommandTAcceptSelectionSplitMap='<C-m>' "设置匹配项在窗口水平切分显示(避免与putty的快捷键冲突)
+"
+""相关映射定义
+nnoremap <Leader>fs :CommandT <cr>
+nnoremap <Leader>fb :CommandTBuffer<cr>
+nnoremap <Leader>fj :CommandTJump<cr>
+nnoremap <Leader>ff :CommandTFlush<cr>
+nnoremap <Leader>fjt :CommandTTag<cr>
+
+"End here
+"
