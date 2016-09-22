@@ -1,5 +1,9 @@
 
 #This file records the updates of my dotfiles
+@2016.09.22
+Version 0.4.3.2
+    1.Update _vimrc file for windows IDE by modifying the key-mapping of :nohlsearch;
+
 @2016.09.21
 Version 0.4.3.1
     1.Update _vimrc file for windows IDE by rearrange the ycm plugin setting options;

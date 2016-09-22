@@ -35,7 +35,8 @@ endfunction
 "==========================================================
 
 "========================================================
-"Common Setting Config
+"Common Setting for vim 
+"Modified by metalmac.kyle@2016.09.18,11:07
 "========================================================
 
 " >>
@@ -49,6 +50,20 @@ filetype plugin on
 " 定义快捷键到行首和行尾
 nmap lb 0
 nmap le $
+
+"去除Windows下对Ctrl-y的映射覆盖,并修改上下滚动映射命令
+unmap <C-y>
+nnoremap<A-e> <C-e>
+nnoremap<A-y> <C-y>
+nnoremap<A-d> <C-d>
+nnoremap<A-u> <C-u>
+nnoremap<A-f> <C-f>
+nnoremap<A-b> <C-b>
+
+"Set qq=ESC
+map qq <ESC>
+
+"
 
 " 设置快捷键将选中文本块复制至系统剪贴板
 vnoremap <Leader>y "+y
@@ -80,12 +95,22 @@ nnoremap <Leader>kw <C-W>k
 " 跳转至下方的子窗口
 nnoremap <Leader>jw <C-W>j
 
+"映射窗口切分打开方式
+nnoremap <Leader>sw <C-w>s
+nnoremap <Leader>vw <C-w>v
+
+" 映射调整窗口大小快捷键
+nnoremap <Leader>- <C-w>- 
+nnoremap <Leader>= <C-w>+
+nnoremap <Leader>[ <C-w>>
+nnoremap <Leader>] <C-w><
+
 " 定义快捷键在结对符之间跳转，助记 pair
 nmap <Leader>pa %
 
 "
 "重置编号为1
-nnoremap <Leader>l :let i=1<CR>
+nnoremap <Leader>rl :let i=1<CR>
 "设置宏调用
 nmap<Leader>mco :'<,'>norm @<C-R><CR>
 " vim 自身命令行模式智能补全
@@ -172,10 +197,6 @@ map <Leader>scl :set cul<CR>
 map <Leader>nsl :set nocul<CR>
 map <Leader>scc :set cuc<CR>
 map <Leader>ncc :set nocuc<CR>
-"切换大小写功能
-nmap <Leader>` ~
-nmap <Leader><Leader>` g~~
-
 
 " >>
 " 查找
@@ -184,6 +205,12 @@ nmap <Leader><Leader>` g~~
 nnoremap <Leader>sp :Grep -ir<CR><CR><CR>
 " 使用 Grep.vim 插件在工程内全局查找，设置快捷键。快捷键速记法：search in buffer
 nnoremap <Leader>sb :GrepBuffer -ir<CR><CR>
+
+"插入模式下,替换刚输入单词为大写状态,并切换到单词末尾
+inoremap <Leader>U <ESC>gUiwea
+
+"插入模式下,替换刚输入单词为小写状态,并切换到单词末尾
+inoremap <Leader>u <ESC>guiwea
 
 " <<
 
@@ -239,7 +266,7 @@ xnoremap & :&&<CR>
 
 
 "Set Disable Find highlight mode
-nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+nnoremap <silent> <Leader>l :<C-u>nohlsearch<CR><C-l>
 
 "==========================================================
 "Disable Caps Lock ,map to Ctrl
@@ -284,37 +311,35 @@ Plugin 'gmarik/Vundle.vim'
 " Git plugin not hosted on GitHub
 "Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
-Plugin 'OmniSharp/omnisharp-vim'
-Plugin 'tpope/vim-dispatch'
-Plugin 'scrooloose/syntastic'
-Plugin 'kien/ctrlp.vim'
-"Install UltiSnips plugin
-Plugin 'https://github.com/SirVer/ultisnips'
- "Install Easymotion plugin
-Plugin  'https://github.com/Lokaltog/vim-easymotion'
-"Install vim-signature plugin
-Plugin  'https://github.com/kshenoy/vim-signature'
-"Install vim-hust plugin
-Plugin 'vim-utils/vim-husk'
-"
-"Install vim-surround plugin
-Plugin 'https://github.com/tpope/vim-surround'
-
-"Install vim-plugin-minibufexpl
-Plugin 'https://github.com/weynhamz/vim-plugin-minibufexpl'
-
-"Install vim-fugitive and vim-unimpaired plugin
-Plugin 'https://github.com/tpope/vim-fugitive'
-Plugin 'https://github.com/tpope/vim-unimpaired'
-
-"Install sessionman.vim plugin
-Plugin 'https://github.com/vim-scripts/sessionman.vim'
-
-"Install vim-textobj user/entire plugin
-Plugin 'https://github.com/kana/vim-textobj-user'
-Plugin 'https://github.com/kana/vim-textobj-entire/'
-
-
+ "Plugin 'git://git.wincent.com/command-t.git'
+ Plugin 'https://github.com/wincent/Command-T'
+ Plugin 'https://github.com/Valloric/YouCompleteMe'
+ Plugin 'tpope/vim-dispatch'
+ Plugin 'scrooloose/syntastic'
+ Plugin 'mhinz/vim-startify'
+ Plugin 'https://github.com/bling/vim-airline'
+ Plugin 'https://github.com/scrooloose/nerdtree'
+ Plugin 'https://github.com/vim-scripts/VOoM'
+ Plugin 'https://github.com/majutsushi/tagbar'
+ Plugin 'https://github.com/yegappan/grep'
+ Plugin 'https://github.com/scrooloose/nerdcommenter'
+ Plugin 'https://github.com/OmniSharp/omnisharp-server'
+ Plugin	'https://github.com/OmniSharp/omnisharp-vim'
+ Plugin 'https://github.com/tpope/vim-abolish'
+ Plugin 'https://github.com/Lokaltog/vim-easymotion'
+ Plugin 'https://github.com/SirVer/ultisnips'
+ Plugin 'https://github.com/kshenoy/vim-signature'
+ Plugin 'vim-utils/vim-husk'
+ Plugin 'https://github.com/tpope/vim-surround'
+ Plugin 'https://github.com/weynhamz/vim-plugin-minibufexpl'
+ Plugin 'https://github.com/tpope/vim-fugitive'
+ Plugin 'https://github.com/tpope/vim-unimpaired'
+ Plugin 'https://github.com/vim-scripts/sessionman.vim'
+ Plugin 'https://github.com/kana/vim-textobj-user'
+ Plugin 'https://github.com/kana/vim-textobj-entire'
+ Plugin 'https://github.com/tdcdev/ycm_simple_conf'
+ Plugin 'https://github.com/iamcco/markdown-preview.vim'
+ 
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
 "Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -377,6 +402,8 @@ endif
 "Set TabPage movement operation
 map <A-[> :tabp<CR>
 map <A-]> :tabn<CR>
+map <Leader>tp :tabp<CR>
+map <Leader>tf :tabn<CR>
 map <Leader>tm0 :tabm 0<CR>
 map <Leader>tm :tabm <C-R><CR>
 map <A-n> :tabnew<CR>
@@ -401,7 +428,7 @@ map <C-F11> :set cul<CR>
 set guifont=Bitstream_Vera_Sans_Mono:h12:cANSI
 "set gfw=幼圆:h12:cGB2312
 
-"set encoding=utf-8
+set encoding=utf-8
 let &termencoding=&encoding
 "set termencoding=cp936
 
@@ -472,6 +499,7 @@ map<F8> :TagbarToggle<CR>
 map <F6> :NERDTreeToggle<CR>
 map <Leader>nf :NERDTreeFind<CR>
 map <Leader>no :NERDTree 
+"" 关闭NERDTree快捷键
 " 显示行号
 let NERDTreeShowLineNumbers=1
 let NERDTreeAutoCenter=1
@@ -484,14 +512,10 @@ let NERDTreeWinSize=31
 let NERDTreeIgnore=['\.pyc','\~$','\.swp']
 " 显示书签列表
 let NERDTreeShowBookmarks=1
-"设置排序
-"let NERDTreeSortOrder=[]
 "End here
 
 "Set %% to Expand active file directory
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%' 
-
-
 
 """"""""""""""""""""""""""""""
 " lookupfile setting @2014.11.05
@@ -519,6 +543,7 @@ let g:LookupFile_AllowNewFiles = 0 "不允许创建不存在的文件
 
 "Set grep.vim
 nnoremap <silent> <F3> :Grep<CR>
+
 "Set macro for searching and folding the irrelevant stuff
 "作者：kidneyball
 "链接：https://www.zhihu.com/question/30782510/answer/70078216
@@ -529,25 +554,41 @@ nnoremap <Leader>zc :setlocal foldexpr=(getline(v:lnum)=~@/)?0:(getline(v:lnum-1
 "nnoremap <silent> <S-F3> :find<CR>
 "
 "
-"Set UltiSnips
-set runtimepath+=C:\Vim\vim74\plugin\UltiSnips
+""""""""""""""""""""""""""""""
+"UltiSnips setting start here
+""""""""""""""""""""""""""""""
+"定义存放代码片段的文件夹 .vim/snippets下，使用自定义和默认的，将会的到全局，有冲突的会提示
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+let g:UltiSnipsSnippetsDir = 'C:/Vim/vimfiles/bundle/ultisnips/UltiSnips'
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+        
+
+"快速插入代码片段
+let g:UltiSnipsExpandTrigger = "<Tab>"
+let g:UltiSnipsListSnippets = "<Leader><Tab>"
+let g:UltiSnipsJumpForwardTrigger = "<Tab>"
+let g:UltiSnipsJumpBackwardTrigger = "s<Tab>"
+
+"End here
+""""""""""""""""""""""""""""""
 
 "==========================================
 "Set vim-startify
 "Start here
-"========================================
+"===========j==============================
 "Set NERDTree and vim-startify autostart display 
 autocmd VimEnter *
 		\   if !argc()
 		\ |   Startify
-		\ |   NERDTree
+        \ |   NERDTree
 		\ |   wincmd w
 		\ | endif
 
 "When opening a file or bookmark, change to its directory.
     let g:startify_change_to_dir = 1
 "Set bookmark
-let g:startify_bookmarks = [ 'C:\Vim\_vimrc', '~\_viminfo', 'D:\[Working Refernce]\[Learning Notes]\my_vim_learning_notes.log', 'D:\[Working Refernce]\[Learning Notes]\CSAPP_learning_notes.log', 'D:\[Working Refernce]\[Task_Manage]\Personal Task Manage\PTM_2016.log', 'D:\[Working Refernce]\[Code Gallery]\[Mesh_Project]\Dispatch_Plat_Bug_Records\Bug_Records.txt']
+let g:startify_bookmarks = [ 'C:\Vim\_vimrc', '~\_viminfo']
 
 "=================================================
 "Set TabNew and Startify both shortcut
@@ -560,47 +601,89 @@ map<F7> :call Start_NewTabAndNERDTree()<CR>
 	function Start_NewTabAndNERDTree()
 			execute ":tabnew"		
 			execute ":Startify"		
+			execute ":NERDTree"
 			execute ":set nu"
 			execute	":set cul"
-			execute ":NERDTreeToggle"		
 			execute ":set nu"
 		endfunction
 "End here
 "=================================================
 "===================================================
 "Setting for YouCompleteMe Plugin
+"Modified by metalmac.kyle@2016.09.21,13:00
 "Start here
 "==================================================
+"1) 相关变量设置
 
-"
-" 补全功能在注释中同样有效
-let g:ycm_complete_in_comments=1
-" 允许 vim 加载 .ycm_extra_conf.py 文件，不再提示
-let g:ycm_confirm_extra_conf=0
-" 开启 YCM 基于标签引擎
-let g:ycm_collect_identifiers_from_tags_files=1
-" 引入 C++ 标准库tags，这个没有也没关系，只要.ycm_extra_conf.py文件中指定了正确的标准库路径
-"set tags+=/data/misc/software/misc./vim/stdcpp.tags
-" YCM 集成 OmniCppComplete 补全引擎，设置其快捷键
-inoremap <leader>; <C-x><C-o>
-" 补全内容不以分割子窗口形式出现，只显示补全列表
-set completeopt-=preview
-" 从第一个键入字符就开始罗列匹配项
-let g:ycm_min_num_of_chars_for_completion=1
-" 禁止缓存匹配项，每次都重新生成匹配项
-let g:ycm_cache_omnifunc=0
-" 语法关键字补全            
-let g:ycm_seed_identifiers_with_syntax=1
-" 修改对C函数的补全快捷键，默认是CTRL + space，修改为ALT + ;
-let g:ycm_key_invoke_completion = '<A-;>'
-" 设置转到定义处的快捷键为ALT + G，这个功能非常赞
-nmap <M-g> :YcmCompleter GoToDefinitionElseDeclaration <C-R>=expand("<cword>")<CR><CR>
-"
+"youcompleteme  默认tab  s-tab 和自动补全冲突
+let g:ycm_key_list_select_completion=['<c-n>']
+let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_key_list_previous_completion=['<c-p>']
+let g:ycm_key_list_previous_completion = ['<Up>']
+let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
+let g:ycm_collect_identifiers_from_tags_files = 1 " 开启 YCM
+let g:ycm_auto_trigger=1
 
-nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
-map <A-F10> :YcmDebugInfo<CR>
-map <A-F9> :YcmCompleter<CR>
-let g:ycm_auto_trigger=0
+"基于标签引擎
+let g:ycm_min_num_of_chars_for_completion=2	"
+"从第2个键入字符就开始罗列匹配项
+let g:ycm_cache_omnifunc=0	" 禁止缓存匹配项,每次都重新生成匹配项
+let g:ycm_seed_identifiers_with_syntax=1	" 语法关键字补全
+
+
+"在注释输入中也能补全
+let g:ycm_complete_in_comments = 1
+"在字符串输入中也能补全
+let g:ycm_complete_in_strings = 1
+"注释和字符串中的文字也会被收入补全
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_use_ultisnips_completer = 1
+let g:ycm_key_invoke_completion = '<A-Space>' "设置ycm不全除非快捷键
+
+"2)相关映射设置
+"跳转到定义处
+nnoremap <leader>yfc :YcmForceCompileAndDiagnostics<CR>	
+noremap <leader>yld :YcmCompleter GoToDefinitionElseDeclaration<CR>
+noremap <leader>yd :YcmCompleter GoToDefinition<CR>
+noremap <leader>yl :YcmCompleter GoToDeclaration<CR>
+noremap <leader>ydi :YcmCompleter :YcmDebugInfo<CR>
+"force recomile with syntastic
+
+nnoremap <leader>lo :lopen<CR>	"open locationlist
+nnoremap <leader>lc :lclose<CR>	"close locationlist
+inoremap <leader><leader> <C-x><C-o>
+
+"3) 自定义函数功能
+set completeopt=longest,menu	
+map<leader>hpw :call HidePreviewWindow()<CR>
+map<leader>opw :call OpenPreviewWindow()<CR>
+
+"开启离开插入模式后自动关闭预览窗口功能
+function HidePreviewWindow()
+    autocmd  InsertLeave * if pumvisible() == 0 |pclose |endif	
+endfunction
+
+"取消离开插入模式后自动关闭预览窗口功能
+function OpenPreviewWindow()
+    autocmd  InsertLeave * if pumvisible() != 0 |pclose!|endif	
+endfunction
+
+"autocmd InsertLeave * if pumvisible() == 0|pclose|endif	"离开插入模式后自动关闭预览窗口
+"回车即选中当前项
+inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"	
+"上下左右键的行为 会显示其他信息
+inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+
+"End here
+"===================================================
+"Setting for ycm_simple_conf Plugin
+"Start here
+"==================================================
+let g:ycm_simple_conf_active = 1
+
 "End here
 
 "===============================================
@@ -610,7 +693,7 @@ let g:ycm_auto_trigger=0
 " 显示/关闭 MBE
  map <Leader>bl :MBEToggle<cr>
  map <Leader>bla :MBEToggleAll<cr>
- "聚焦至MBE窗口
+ map <Leader>bl :MBEToggle<cr>
  map <Leader>bf :MBEFocus<cr>
  "关闭MBE窗口显示
  map <Leader>bc :MBEClose<cr>
@@ -634,18 +717,13 @@ function! DeleteSelectedBuffer()
     execute ':MBEbd' delseq
 endfunction
 "End here
-
-"===============================================
-"Setting for ConqueTerm
-"Start here
-"===============================================
-
 "===============================================
 "Setting for Indent Guides
 "===============================================
   let g:indent_guides_auto_colors = 1
 "===============================================
-""========================================================
+
+"========================================================
 "session.vim settings
 "Added by metalmac.kyle@2016.08.31,10:40
 "========================================================
@@ -658,40 +736,102 @@ nnoremap <Leader>ssa :SessionSaveAs<cr>
 nnoremap <Leader>ssl :SessionShowLast<cr>
 "
 "End here
+"
 "========================================================
 "vim-fugitive settings
 "Added by metalmac.kyle@2016.09.02,09:23
 "========================================================
 nnoremap <Leader><Leader>g :Git <C-R><cr>
 nnoremap <Leader>gpl :Gpull --all<cr>
-nnoremap <Leader>gph :Gpush --all<cr>
-nnoremap <Leader>gpg :Gpush --tags<cr>
+nnoremap <Leader>gaa :Git add .<cr>
+nnoremap <Leader>gt :Git tag <C-R><cr>
+"nnoremap <Leader>gph :Gpush --all<cr>
+nnoremap <Leader>gph :Git push --all<cr>
+"nnoremap <Leader>gpg :Gpush --tags<cr>
+nnoremap <Leader>gpg :Git push --tags<cr>
 nnoremap <Leader>gc :Gcommit<cr>
-nnoremap <Leader>ge :Gedit<cr>
 nnoremap <Leader>gw :Gwrite<cr>
 nnoremap <Leader>gs :Gstatus<cr>
 nnoremap <Leader>gl :Glog --<cr>
+nnoremap <Leader>gl3 :Git log --decorate -3<cr>
 nnoremap <Leader>gf :Gfetch --all<cr>
 "End here
 "
 "========================================================
-"vim-textobj-user,vim-textobj-entire settings
-"Added by metalmac.kyle@2016.09.02,10:35
+"command-t settings
+"Added by metalmac.kyle@2016.09.18,09:45
 "========================================================
-"nmap aT  <Plug>(textobj-datetime-time)
-"nmap ae	<Plug>(textobj-entire-a)
-"nmap ie	<Plug>(textobj-entire-i)
+"相关变量设置
+let g:CommandTMaxFiles=20000 "设置最大缓存文件索引数
+let g:CommandTSuppressMaxFilesWarning=0 "阻止最大文件数警告设置
+let g:CommandTMaxHeight=10          "Command-t最大显示高度
+let g:CommandTInputDebounce =10          "设置输入延迟显示时间为10毫秒
+let g:CommandTMatchWindowAtTop=0          "设置匹配像在窗口顶部
+let g:CommandTMatchWindowReverse=1          "设置匹配像是否翻转显示顺序
+let g:CommandTBackspaceMap='<C-h>'        "设置光标回退删除输入字符
+let g:CommandTDeleteMap='<C-d>'         "设置删除光标下字符
+let g:CommandTCursorLeftMap='<C-b>'         "设置光标向左回退
+let g:CommandTCursorRightMap='<C-f>'         "设置光标向右回退
+let g:CommandTRefreshMap='<C-r>'         "设置刷新匹配窗口
+
+"相关映射设置
+nnoremap <Leader>fs :CommandT <cr>
+nnoremap <Leader>fb :CommandTBuffer<cr>
+nnoremap <Leader>fj :CommandTJump<cr>
+nnoremap <Leader>ff :CommandTFlush<cr>
+nnoremap <Leader>fjt :CommandTTag<cr>
+
 "End here
+"========================================================
+"markdown-preview.vim settings
+"Added by metalmac.kyle@2016.09.21.11:21
+"========================================================
+"相关变量设置
+" 设置 chrome 浏览器的路径（或是启动 " chrome（或其他现代浏览器）的命令)
+" 此处个人设置为opera新版浏览器路径
+let g:mkdp_path_to_chrome = "C:\\Program Files (x86)\\Opera\\launcher.exe"
+
+let g:mkdp_auto_start = 0
+" 设置为 1 可以在打开 markdown 文件的时候自动打开浏览器预览，只在打开
+" markdown 文件的时候打开一次
+
+let g:mkdp_auto_open = 0
+" 设置为 1 在编辑 markdown 的时候检查预览窗口是否已经打开，否则自动打开预
+" 览窗口
+
+let g:mkdp_auto_close = 1
+" 在切换 buffer 的时候自动关闭预览窗口，设置为 0 则在切换 buffer 的时候不
+" 自动关闭预览窗口
+
+let g:mkdp_refresh_slow = 0
+" 设置为 1 则只有在保存文件，或退出插入模式的时候更新预览，默认为 0，实时
+" 更新预览
+
+let g:mkdp_command_for_global = 0
+" 设置为 1 则所有文件都可以使用 MarkdownPreview 进行预览，默认只有 markdown
+" 文件可以使用改命令
+"
+"相关映射设置
+" 在打开 markdown 文件后，使用该命令可以打开预览窗口
+nnoremap <Leader>mp :MarkdownPreview<cr>
+inoremap <Leader>mp :MarkdownPreview<cr>
+
+" 关闭 markdown 预览窗口，并停止开启的服务进程
+nnoremap <Leader>mps  :MarkdownPreviewStop<cr>
+inoremap <Leader>mps  :MarkdownPreviewStop<cr>
+"End here
+"
+"nnoremap <Leader>ae(ae)
 "Set ctags && cscope
 map <F12> :call Do_CsTag()<CR>
-nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>:copen<CR>
-nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>:copen<CR>
-nmap <C-@>t :cs find t <C-R>=expand("<cword>")<CR><CR>:copen<CR>
-nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>:copen<CR>
-nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>:copen<CR>
-nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>:copen<CR>
-nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>:copen<CR>
+nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>:copen<CR>
+nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>:copen<CR>
+nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>:copen<CR>
 function Do_CsTag()
     let dir = getcwd()
     if filereadable("tags")
