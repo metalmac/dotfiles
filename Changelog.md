@@ -1,6 +1,10 @@
 
 #This file records the updates of my dotfiles
 @2016.09.23
+Version 0.4.4.1
+    1.Update _vimrc file for linux IDE by adding the setting for the vim-cpp-enhanced-highlight plugin;
+
+@2016.09.23
 Version 0.4.4
     1.Update _vimrc file for windows IDE by adding the setting for the markdown-preview.vim and vim-cpp-enhanced-highlight plugin;
 
