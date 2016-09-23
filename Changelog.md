@@ -1,6 +1,10 @@
 
 #This file records the updates of my dotfiles
 @2016.09.23
+Version 0.4.4.2
+    1.Update _vimrc file for windows IDE by fix the incorrect settings comments on vim-cpp-enhanced-highlight;
+
+@2016.09.23
 Version 0.4.4.1
     1.Update _vimrc file for linux IDE by adding the setting for the vim-cpp-enhanced-highlight plugin;
 

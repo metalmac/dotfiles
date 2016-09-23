@@ -824,7 +824,7 @@ inoremap <Leader>mps  :MarkdownPreviewStop<cr>
 "End here
 "
 "========================================================
-"markdown-preview.vim settings
+"vim-cpp-enhanced-highlight settings
 "Added by metalmac.kyle@2016.09.23,15:09
 "========================================================
 "1) 相关变量设置
