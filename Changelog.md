@@ -1,5 +1,10 @@
 
 #This file records the updates of my dotfiles
+@2016.09.29
+Version 0.4.5
+    1.Update _vimrc file for windows IDE by fix some ycm plugin issues;
+    2.Update .kill_proc@Boot.bat by adding some processes to be killed;
+
 @2016.09.23
 Version 0.4.4.2
     1.Update _vimrc file for windows IDE by fix the incorrect settings comments on vim-cpp-enhanced-highlight;

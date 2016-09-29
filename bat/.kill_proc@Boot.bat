@@ -32,7 +32,9 @@ taskkill /f /t /im wisptis.exe
 taskkill /f /t /im D4Svr_ICBC.exe
 taskkill /f /t /im YoukuMediaCenter.exe
 taskkill /f /t /im TaobaoProtect.exe
-
+taskkill /f /t /im iToolsDaemon.exe
+taskkill /f /t /im SEMini_4.0.6.764_8007.exe
+taskkill /f /t /im winguard.exe
 
 echo
 echo %time% Finished.
