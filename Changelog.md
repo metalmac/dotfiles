@@ -1,5 +1,10 @@
 
 #This file records the updates of my dotfiles
+@2016.09.30
+Version 0.5.0
+    1.Update vim80-configure-sh.sh;
+    2.Add vim80-compile-sh.sh into dotfiles git repository
+
 @2016.09.29
 Version 0.4.5
     1.Update _vimrc file for windows IDE by fix some ycm plugin issues;
