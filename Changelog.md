@@ -1,6 +1,10 @@
 
 #This file records the updates of my dotfiles
 @2016.09.30
+Version 0.5.0.1
+    1.Delete the vim80-configure-sh.sh from vim directory;
+
+@2016.09.30
 Version 0.5.0
     1.Update vim80-configure-sh.sh;
     2.Add vim80-compile-sh.sh into dotfiles git repository
