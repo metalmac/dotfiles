@@ -1,10 +1,12 @@
 
 #This file records the updates of my dotfiles
+@2017.02.13
+Version 0.5.2
+    1.Update _vimrc file for windows IDE by installing vim-sneak plugin with Vundle and make some changes for _vimrc file;
 
 @2017.01.09
 Version 0.5.1
     1.Update _vimrc file for windows IDE by installing some plugins with Vundle and make some changes for _vimrc file layout;
-    
 
 @2016.09.30
 Version 0.5.0.1
