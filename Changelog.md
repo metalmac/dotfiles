@@ -1,5 +1,10 @@
 
 #This file records the updates of my dotfiles
+@2017.02.26
+Version 0.5.3
+    1.Update _vimrc file for windows IDE by modifying the settings for NERDTree plugin and vimenter function;
+    2.Backup windows vimrc file;
+
 @2017.02.13
 Version 0.5.2
     1.Update _vimrc file for windows IDE by installing vim-sneak plugin with Vundle and make some changes for _vimrc file;
